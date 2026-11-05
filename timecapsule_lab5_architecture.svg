@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980" role="img" aria-label="TimeCapsule Lab 5 cloud architecture">
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#6fb2ef" stroke-width="1.5"/></marker></defs>
+<rect x="0" y="0" width="1600" height="980" rx="0" fill="#0b1524" stroke="#0b1524" stroke-width="0"/>
+<text x="48" y="58" font-family="DejaVu Sans,Arial,sans-serif" font-size="29" fill="#f0f5ff" font-weight="700">TIMECAPSULE / LAB 05 — AMAZON RDS</text>
+<text x="50" y="90" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" fill="#aabed6" font-weight="400">AWS eu-central-1 · Updated from Lab 04 · Single-AZ PostgreSQL + nightly stop</text>
+<rect x="35" y="190" width="220" height="102" rx="13" fill="#182c40" stroke="#8cb8e6" stroke-width="2"/>
+<text x="53" y="221" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" fill="#f1f6ff" font-weight="700">User browser</text>
+<text x="53" y="246" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" fill="#bdd1e4" font-weight="400">HTTP :80 → TimeCapsule</text>
+<text x="53" y="266" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" fill="#bdd1e4" font-weight="400">S3 pre-signed GET</text>
+<rect x="35" y="363" width="220" height="106" rx="13" fill="#182c40" stroke="#8acbb8" stroke-width="2"/>
+<text x="53" y="394" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" fill="#f1f6ff" font-weight="700">Developer PC</text>
+<text x="53" y="419" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" fill="#bdd1e4" font-weight="400">SSH through bastion</text>
+<text x="53" y="439" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" fill="#bdd1e4" font-weight="400">GitHub deployment</text>
+<rect x="277" y="128" width="950" height="730" rx="20" fill="#101e31" stroke="#9d83db" stroke-width="2"/>
+<text x="304" y="164" font-family="DejaVu Sans,Arial,sans-serif" font-size="21" fill="#d9caff" font-weight="700">TimeCapsule VPC · 10.27.0.0/16</text>
+<rect x="296" y="187" width="445" height="637" rx="16" fill="#14263b" stroke="#4caafa" stroke-width="2"/>
+<rect x="753" y="187" width="451" height="637" rx="16" fill="#14263b" stroke="#4caafa" stroke-width="2"/>
+<text x="317" y="219" font-family="DejaVu Sans,Arial,sans-serif" font-size="17" fill="#8ed0ff" font-weight="700">eu-central-1a</text>
+<text x="773" y="219" font-family="DejaVu Sans,Arial,sans-serif" font-size="17" fill="#8ed0ff" font-weight="700">eu-central-1b</text>
+<rect x="310" y="238" width="414" height="244" rx="16" fill="#17364c" stroke="#60b7f7" stroke-width="2"/>
+<rect x="767" y="238" width="420" height="244" rx="16" fill="#17364c" stroke="#60b7f7" stroke-width="2"/>
+<text x="327" y="266" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" fill="#b1dcfa" font-weight="400">Public A · 10.27.0.0/24</text>
+<text x="784" y="266" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" fill="#b1dcfa" font-weight="400">Public B · 10.27.1.0/24</text>
+<rect x="337" y="300" width="355" height="119" rx="13" fill="#493224" stroke="#f5a14c" stroke-width="2"/>
+<text x="355" y="331" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" fill="#f1f6ff" font-weight="700">App Server (EC2)</text>
+<text x="355" y="356" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" fill="#bdd1e4" font-weight="400">Nginx :80 · PHP-FPM · AWS SDK</text>
+<text x="355" y="376" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" fill="#bdd1e4" font-weight="400">SG: app-server · IAM app role</text>
+<rect x="798" y="300" width="355" height="119" rx="13" fill="#493224" stroke="#f5a14c" stroke-width="2"/>
+<text x="816" y="331" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" fill="#f1f6ff" font-weight="700">Bastion (EC2)</text>
+<text x="816" y="356" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" fill="#bdd1e4" font-weight="400">SSH :22 from developer IP</text>
+<text x="816" y="376" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" fill="#bdd1e4" font-weight="400">Management access</text>
+<rect x="310" y="495" width="414" height="298" rx="16" fill="#30223e" stroke="#b987db" stroke-width="2"/>
+<rect x="767" y="495" width="420" height="298" rx="16" fill="#30223e" stroke="#b987db" stroke-width="2"/>
+<text x="328" y="524" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" fill="#e3c5f0" font-weight="400">Private A · 10.27.10.0/24</text>
+<text x="785" y="524" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" fill="#e3c5f0" font-weight="400">Private B · 10.27.11.0/24</text>
+<rect x="340" y="559" width="354" height="133" rx="13" fill="#453052" stroke="#c895dd" stroke-width="2"/>
+<text x="358" y="590" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" fill="#f1f6ff" font-weight="700">Amazon RDS · PostgreSQL</text>
+<text x="358" y="615" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" fill="#bdd1e4" font-weight="400">timecapsule-dev-rds · Single-AZ</text>
+<text x="358" y="635" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" fill="#bdd1e4" font-weight="400">Port 5432 · no public IP</text>
+<text x="358" y="655" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" fill="#bdd1e4" font-weight="400">SG: timecapsule-dev-rds-sg</text>
+<rect x="795" y="559" width="362" height="133" rx="13" fill="#343047" stroke="#b7a9cb" stroke-width="2"/>
+<text x="813" y="590" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" fill="#f1f6ff" font-weight="700">DB subnet group · second AZ</text>
+<text x="813" y="615" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" fill="#bdd1e4" font-weight="400">Reserved for RDS placement</text>
+<text x="813" y="635" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" fill="#bdd1e4" font-weight="400">No active standby in Single-AZ</text>
+<rect x="338" y="719" width="357" height="53" rx="13" fill="#342b45" stroke="#9e83ca" stroke-width="2"/>
+<text x="356" y="750" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" fill="#f1f6ff" font-weight="700">Private route table</text>
+<text x="356" y="775" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" fill="#bdd1e4" font-weight="400">No default route</text>
+<rect x="794" y="719" width="362" height="53" rx="13" fill="#342b45" stroke="#9e83ca" stroke-width="2"/>
+<text x="812" y="750" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" fill="#f1f6ff" font-weight="700">Private route table</text>
+<text x="812" y="775" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" fill="#bdd1e4" font-weight="400">No default route</text>
+<rect x="1246" y="128" width="332" height="730" rx="18" fill="#142331" stroke="#72b2c9" stroke-width="2"/>
+<text x="1264" y="161" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" fill="#c9ecf6" font-weight="700">Regional AWS services</text>
+<text x="1264" y="182" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" fill="#a6c8d5" font-weight="400">outside VPC</text>
+<rect x="1265" y="209" width="293" height="115" rx="13" fill="#203949" stroke="#74c2db" stroke-width="2"/>
+<text x="1283" y="240" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" fill="#f1f6ff" font-weight="700">Route 53 · Private zone</text>
+<text x="1283" y="265" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" fill="#bdd1e4" font-weight="400">db.timecapsule.internal</text>
+<text x="1283" y="285" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" fill="#bdd1e4" font-weight="400">CNAME → RDS endpoint</text>
+<rect x="1265" y="357" width="293" height="116" rx="13" fill="#153c45" stroke="#64c5d3" stroke-width="2"/>
+<text x="1283" y="388" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" fill="#f1f6ff" font-weight="700">Amazon S3</text>
+<text x="1283" y="413" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" fill="#bdd1e4" font-weight="400">timecapsule-dev-uploads-yakovlev</text>
+<text x="1283" y="433" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" fill="#bdd1e4" font-weight="400">uploads/ · private · SSE-S3</text>
+<rect x="1265" y="510" width="293" height="111" rx="13" fill="#382c4a" stroke="#b694dc" stroke-width="2"/>
+<text x="1283" y="541" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" fill="#f1f6ff" font-weight="700">IAM app role</text>
+<text x="1283" y="566" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" fill="#bdd1e4" font-weight="400">S3 GetObject / PutObject</text>
+<text x="1283" y="586" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" fill="#bdd1e4" font-weight="400">DeleteObject</text>
+<rect x="1265" y="651" width="293" height="147" rx="13" fill="#26404a" stroke="#6db9c7" stroke-width="2"/>
+<text x="1283" y="682" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" fill="#f1f6ff" font-weight="700">EventBridge Scheduler</text>
+<text x="1283" y="707" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" fill="#bdd1e4" font-weight="400">timecapsule-dev-rds-nightly-stop</text>
+<text x="1283" y="727" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" fill="#bdd1e4" font-weight="400">23:00 Europe/Chisinau</text>
+<text x="1283" y="747" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" fill="#bdd1e4" font-weight="400">IAM role: scheduler-role</text>
+<text x="1283" y="767" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" fill="#bdd1e4" font-weight="400">API: StopDBInstance</text>
+<polyline points="255,238 288,238 288,339 336,339" fill="none" stroke="#7cb0e3" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"  marker-end="url(#arrow)"/>
+<text x="260" y="229" font-family="DejaVu Sans,Arial,sans-serif" font-size="12" fill="#b2d9fa" font-weight="400">HTTP</text>
+<polyline points="255,421 281,421 281,446 778,446 778,359 797,359" fill="none" stroke="#8edac9" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="9 6" />
+<text x="300" y="437" font-family="DejaVu Sans,Arial,sans-serif" font-size="12" fill="#a5e5d3" font-weight="400">SSH via bastion</text>
+<polyline points="515,419 515,542 515,558" fill="none" stroke="#d599e6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"  marker-end="url(#arrow)"/>
+<text x="527" y="509" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" fill="#e6bbf0" font-weight="400">TCP 5432</text>
+<polyline points="1265,267 1218,267 1218,841 728,841 728,636 695,636" fill="none" stroke="#7ecfe1" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="9 6" marker-end="url(#arrow)"/>
+<text x="967" y="832" font-family="DejaVu Sans,Arial,sans-serif" font-size="12" fill="#9bdeea" font-weight="400">Private DNS resolves to RDS</text>
+<polyline points="692,319 715,319 715,179 1235,179 1235,409 1264,409" fill="none" stroke="#65d7dd" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"  marker-end="url(#arrow)"/>
+<text x="850" y="171" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" fill="#a8e5e7" font-weight="400">S3 SDK: PutObject / DeleteObject</text>
+<polyline points="692,380 737,380 737,491 1236,491 1236,562 1264,562" fill="none" stroke="#c6a0e5" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="9 6" marker-end="url(#arrow)"/>
+<text x="979" y="484" font-family="DejaVu Sans,Arial,sans-serif" font-size="12" fill="#ddc3f5" font-weight="400">EC2 role / IMDS</text>
+<polyline points="1265,730 1228,730 1228,879 605,879 605,694" fill="none" stroke="#77c3d0" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="9 6" marker-end="url(#arrow)"/>
+<text x="918" y="872" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" fill="#9fe4ed" font-weight="400">Scheduled StopDBInstance</text>
+<polyline points="150,292 150,904 1440,904 1440,474" fill="none" stroke="#eab760" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="9 6" />
+<text x="522" y="896" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" fill="#e9c98b" font-weight="400">Browser follows 302 redirect → pre-signed S3 GET</text>
+<rect x="37" y="926" width="1528" height="39" rx="12" fill="#152739" stroke="#3c607d" stroke-width="2"/>
+<text x="58" y="952" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" fill="#d5e1ee" font-weight="400">Data: HTTP / PostgreSQL / S3 HTTPS</text>
+<text x="567" y="952" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" fill="#d5e1ee" font-weight="400">Dashed: SSH / DNS / IAM / automation</text>
+<text x="1126" y="952" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" fill="#d5e1ee" font-weight="400">PostgreSQL managed by RDS</text>
+</svg>
